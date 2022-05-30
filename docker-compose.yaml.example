@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  server:
+    image: zaytovy
+    environment:
+      PORT: "8080"
+      MONGO_URI: "mongodb://root:your_root_password_please_change_for_production@mongo:27017"
+    ports:
+      - "3035:8080"
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "your_root_password_please_change_for_production"
+    volumes:
+      - zaytovy:/data/db
+volumes:
+  zaytovy:
+    external: true
